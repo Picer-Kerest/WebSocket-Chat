@@ -1,0 +1,12 @@
+*.pyc
+*/*.pyc
+*/*/*.pyc
+node_modules
+helper.txt
+*.sqlite3
+/db/*.sqlite3
+local_settings.py
+.env
+text.txt
+channels_helper.txt
+migrations/
