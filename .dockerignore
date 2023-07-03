@@ -1,0 +1,27 @@
+.git
+.env
+Procfile
+README.md
+docker_helper.txt
+db.sqlite3
+celery_helper.txt
+.gitignore
+helper.txt
+channels_helper.txt
+
+# Исключаем все скрытые файлы и папки
+# Исключаем локальные настройки Django
+# Исключаем файлы, создаваемые в ходе сборки проекта
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*~
+# Исключаем виртуальное окружение Python
+**/venv
+**/isolation
+# Исключаем временные файлы, создаваемые редактором кода
+**/.vscode
+**/.idea
+# Исключаем файлы, которые хранятся вне репозитория
+**/logs/*
+**/media/*

@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis
+    ports:
+      - '127.0.0.1:6379:6379'
+    restart: always
+    container_name: rediska
+    networks:
+      - some_test_net
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile_db
+    container_name: db
+    env_file: .env
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    restart: always
+    volumes:
+      - ./db_data:/var/lib/mysql
+      - ./initial.sql:/docker-entrypoint-initdb.d/initial.sql:ro
+    ports:
+      - "3307:3306"
+    networks:
+      - some_test_net
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile_web
+    container_name: web
+    env_file: .env
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: redis
+      DB_PORT: ${DB_PORT}
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    restart: always
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    links:
+      - db
+    depends_on:
+      - db
+      - redis
+    networks:
+      - some_test_net
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile_front
+    container_name: front
+    command: npx tailwindcss -i ./static/css/main.css -o ./static/css/main.min.css --watch
+    restart: always
+    volumes:
+      - ./static:/app/static
+    ports:
+      - '3000:3000'
+    networks:
+      - some_test_net
+
+networks:
+  some_test_net:
