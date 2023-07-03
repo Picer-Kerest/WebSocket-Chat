@@ -6,8 +6,8 @@ helper.txt
 *.sqlite3
 /db/*.sqlite3
 local_settings.py
-.env
 text.txt
 channels_helper.txt
 migrations/
 docker_helper.txt
+ful_env.txt
