@@ -6,7 +6,8 @@ While in the directory, enter the following commands into the terminal:
 docker-compose build
 docker-compose up -d
 ```
-If after the entered commands you see «This Site Can’t Be Reached» this mean that the services are being started. The startup speed depends on the power of the computer. It takes me about 10 seconds.
+If after the entered commands you see «This Site Can’t Be Reached» this mean that the services are being started. 
+The startup speed depends on the power of the computer. It takes me about 25 seconds.
 
 To view the launch status of the services, you can enter the command:
 ```
