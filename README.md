@@ -50,6 +50,7 @@ The next step is to create a Django superuser:
 python manage.py createsuperuser
 ```
 
-###  Project Information
+To log in, go to http://127.0.0.1:8000/admin
 
+###  Project Information
 Chat implemented using Django Channels. Allows you to exchange messages in real time. The user who entered the chat sees which user joined him. You can also see if your interlocutor is typing a message. As soon as the user who started the chat disconnects, the chat closes.
