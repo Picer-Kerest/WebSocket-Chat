@@ -1,7 +1,6 @@
-import json
 from django.contrib import messages
 from django.contrib.auth.models import Group
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
@@ -51,6 +50,7 @@ def room(request, uuid):
 def user_detail(request, uuid):
     user = User.objects.get(pk=uuid)
     rooms = user.rooms.all()
+    # Работа related_name
     # Получаем все комнаты, созданные пользователем
     return render(request, 'chat/user_detail.html', {
         'user': user,

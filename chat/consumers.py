@@ -30,7 +30,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Получаем комнату
 
         await self.channel_layer.group_add(self.room_group_name, self.channel_name)
-        # Присоединяемся к группе. Здесь не нужен sync_to_async, потому что у нас AsyncWebsocketConsumer, а не WebsocketConsumer
+        # Присоединяемся к группе.
+        # Здесь не нужен sync_to_async, потому что у нас AsyncWebsocketConsumer, а не WebsocketConsumer
 
         await self.accept()
         # Принимает соединение WebSocket
@@ -135,5 +136,4 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Также метод .add вместо явного сохранения позволит избежать ошибок
 
         return message
-
 
